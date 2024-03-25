@@ -9,6 +9,6 @@ const categorySchema = new mongoose.Schema({
 });
 
 // Create and export User model
-const News = mongoose.model("Category", categorySchema);
+const Category = mongoose.model("Category", categorySchema);
 
-module.exports = News;
+module.exports = Category;

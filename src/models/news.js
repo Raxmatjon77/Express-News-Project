@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-
+const Category=require("./category")
 // Define user schema
 const newsSchema = new mongoose.Schema({
   title: {
@@ -22,6 +22,13 @@ const newsSchema = new mongoose.Schema({
     default: Date.now,
   }}
 );
+newsSchema.pre("save", async function (next) {
+  const category = await Category.findById(this.category);
+  if (!category) {
+    throw new Error("Invalid category reference");
+  }
+  next();
+});
 
 // Create and export User model
 const News = mongoose.model("News", newsSchema);

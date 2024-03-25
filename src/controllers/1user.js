@@ -76,7 +76,9 @@ class UserController {
       if (!isMatch) {
         return res.status(401).json({ message: "Invalid credentials" });
       }
-      const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET);
+      const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, {
+        expiresIn: "3m",
+      });
       res.json({ message: "you have logged in successfuly", token: token });
     } catch (err) {
       res.status(500).json({ error: err.message });
@@ -90,7 +92,7 @@ class UserController {
       console.log(_id);
 
         if(user){
-            if (username) user.username = username;
+      if (username) user.username = username;
       if (email) user.email = email;
       if(firstName) user.firstName = firstName;
       if (lastName) user.lastName = lastName 
