@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const Category=require("./category")
+const {Schema}=require('mongoose')
 // Define user schema
 const newsSchema = new mongoose.Schema({
   title: {
